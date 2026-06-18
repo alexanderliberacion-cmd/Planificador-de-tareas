@@ -1,0 +1,38 @@
+.main {
+    background-color: #0f172a;
+    min-height: 100vh;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 2rem;
+    background-color: #1e293b;
+    border-bottom: 1px solid #334155;
+}
+
+.title {
+    font-size: 1.875rem;
+    font-weight: 600;
+    color: #f1f5f9;
+}
+
+.auth-buttons {
+    display: flex;
+    gap: 1rem;
+}
+
+.dashboard-wrapper {
+    display: flex;
+    gap: 2rem;
+    padding: 2rem;
+}
+
+.tasks-section {
+    flex: 1;
+}
+
+.rachas-section {
+    width: 320px;
+}

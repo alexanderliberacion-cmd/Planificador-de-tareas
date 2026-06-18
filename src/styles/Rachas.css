@@ -1,0 +1,44 @@
+.rachas-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.rachas-card {
+    background-color: #1e293b;
+    border: 2px solid #f59e0b;
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.rachas-header {
+    border-bottom: 1px solid #334155;
+    padding-bottom: 1rem;
+}
+
+.rachas-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #f1f5f9;
+}
+
+.racha-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 0;
+}
+
+.racha-label {
+    color: #cbd5e1;
+    font-size: 0.875rem;
+}
+
+.racha-value {
+    color: #f1f5f9;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
