@@ -24,9 +24,10 @@ export const AuthProvider = ({ children }) => {
         })
     }, [])
 
+    //Metodos de login, register y logout llamando a supabase
+
     function login(email, password) {
         return supabase.auth.signInWithPassword({email,password});
-
     }
 
     async function register(email,password) {

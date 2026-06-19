@@ -5,12 +5,10 @@ import {AuthContext} from "../Context/AuthContext.jsx";
 
 export function Rachas({dias, multiplicador, puntosTotales, record}){
 
-
-
     const [rachas, setRachas] = useState([]);
     const Auth = useContext(AuthContext);
 
-    // Llamar a calcularRacha()
+    //Carga las rachas
     useEffect(() => {
         async function loadRacha(){
             const data = await getRacha(Auth.user.id)
@@ -18,10 +16,6 @@ export function Rachas({dias, multiplicador, puntosTotales, record}){
         }
         loadRacha();
     },[])
-
-
-
-
 
     return (
         <div className="rachas-container">

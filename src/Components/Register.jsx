@@ -5,35 +5,31 @@ import {validateEmail, validatePassword} from "../utils/validators.js";
 import {useNavigate} from "react-router-dom";
 
 export const Register = () => {
-    // State para email y password
-     const [email, setEmail] = useState('')
-     const [password, setPassword] = useState('')
-     const [error, setError] = useState('')
+    // States
+     const [email, setEmail] = useState('');
+     const [password, setPassword] = useState('');
+     const [error, setError] = useState('');
     const {register} = useContext(AuthContext);
     const navigate = useNavigate();
+
+    //Registra a el usuario
     async function registerUser(e){
-        // Valida con validator.js
-        //Si no se usa setError y se retorna
-        //Llama a la api de Supabase
-        // Si existe, setError
-        // Si es exitoso se redirige a Dashboard
-        // Si falla setError
         e.preventDefault();
 
+        //Si no es valido muestra error y cierra la aplicacion
         if (!validateEmail(email) || !validatePassword(password)){
             setError('Email o contraseña no valida');
             return;
         }
 
+        // Si es valido se registrara con el metodo de dao y te enviara al dashboard. Si no saldra un mensaje de error.
         try {
             await register(email,password);
             navigate('/dashboard');
         } catch(error) {
             setError(error.message);
         }
-
     }
-
 
     return (
         <form onSubmit={registerUser} autoComplete="off">

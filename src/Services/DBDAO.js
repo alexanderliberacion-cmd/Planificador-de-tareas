@@ -5,6 +5,9 @@
 import {supabase} from "./supabaseClient.js";
 import {validateTask} from "../utils/validators.js";
 
+// Metodos de crud para tasks
+
+//Añadir
 export async function addTask(tasks) {
     if (validateTask(tasks.nombre, tasks.descripcion)) {
         const {error} = await supabase
@@ -24,6 +27,7 @@ export async function addTask(tasks) {
     }
 }
 
+//Actualizar
 export async function updateTask(tasks) {
     if (validateTask(tasks.nombre, tasks.descripcion)) {
         const {error} = await supabase
@@ -42,8 +46,8 @@ export async function updateTask(tasks) {
     }
 }
 
+//Borrar
 export async function deleteTask(tasks) {
-
     if (!tasks.id) {
         throw new Error("La tarea no existe.")
     }
@@ -58,6 +62,7 @@ export async function deleteTask(tasks) {
     return {success: true};
 }
 
+//Agarrar
 export async function getTasks(user_id) {
     if (!user_id) {
         throw new Error("ID de usuario requerido");
@@ -72,6 +77,7 @@ export async function getTasks(user_id) {
     return data;
 }
 
+//Marcarlas como completadas
 export async function markTaskComplete(tasks) {
     if (!tasks.id) {
         throw new Error("ID de tarea requerido");
@@ -87,9 +93,9 @@ export async function markTaskComplete(tasks) {
     return { success: true };
 }
 
-
-
 //Crud para users
+
+//Esto es para funciones futuras
 
 export async function getUser(user_id) {
     if (!user_id) {
@@ -121,6 +127,7 @@ export async function updateUserProfile(user_id, nombre) {
 
 //Crud para rachas
 
+//Agarra las rachas
 export async function getRacha(user_id){
     if (!user_id) {
         throw new Error("ID de usuario requerido");
@@ -135,6 +142,7 @@ export async function getRacha(user_id){
     return data;
 }
 
+//Actualiza las rachas
 export async function updateRacha(user_id, racha) {
     if (!user_id || !racha) {
         throw new Error("Datos de racha requeridos.");

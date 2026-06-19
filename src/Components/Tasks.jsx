@@ -4,43 +4,37 @@ import {AuthContext} from "../Context/AuthContext.jsx";
 import {validateTask} from "../utils/validators.js";
 
 export function Tasks({onMarcarHecha, tareasNoHechas, onEliminarTarea, onAddTarea, onEditarTarea}) {
-    // Props desde Dashboard
+    //States
+    const [titulo, setTitulo] = useState("");
+    const [descripcion, setDescripcion] = useState("");
+    const [error, setError] = useState('')
+    const Auth = useContext(AuthContext);
+    const [editandoId, setEditandoId] = useState(null);
 
-        const [titulo, setTitulo] = useState("");
-        const [descripcion, setDescripcion] = useState("");
-       const [error, setError] = useState('')
-       const Auth = useContext(AuthContext);
-       const [editandoId, setEditandoId] = useState(null);
-
-
+    //Maneja el añadir tarea
     async function handleAddTarea(e){
-        // Validar con Validator.js
-        // Si falla, setError y retornar
-        // Llamar a DBDAO.addTarea(titulo, descripcion)
-        // setTareas actualizado
         e.preventDefault();
+
+        //Si es valido llamara a onaddTarea y la añadira, si no dara error y cerrara la aplicacion
         if (validateTask(titulo, descripcion, Auth.user.id)) {
-            console.log('añadiendo tarea: ', titulo, descripcion, Auth.user.id);
             onAddTarea(titulo, descripcion, Auth.user.id)
         } else {
             setError("Tarea no valida");
-            return;
         }
     }
 
+    //Maneja el clickear el boton de editar y actualiza los estados
     function handleClickEditar(tarea) {
-        console.log('click editar:', tarea);
         setEditandoId(tarea.id);
         setTitulo(tarea.nombre);
         setDescripcion(tarea.descripcion);
     }
 
+    //Maneja el editar la tarea
      async function handleEditarTarea(e){
-         // Validar
-         // Llamar a DBDAO.updateTarea(id, titulo, descripcion)
-         // setTareas actualizado
-         console.log('handleEditarTarea ejecutado');
          e.preventDefault();
+
+         //Si es valida llamara a onEditarTarea y reinicia el formularia, si no dara error
          if (validateTask( titulo, descripcion)){
              onEditarTarea(editandoId, titulo, descripcion);
              setEditandoId(null);
@@ -51,6 +45,7 @@ export function Tasks({onMarcarHecha, tareasNoHechas, onEliminarTarea, onAddTare
          }
      }
 
+    //Maneja el eliminar una tarea segun su id, y llamara a onEliminarTarea
      function handleEliminarTarea(id){
          onEliminarTarea(id);
      }
@@ -64,9 +59,7 @@ export function Tasks({onMarcarHecha, tareasNoHechas, onEliminarTarea, onAddTare
 
     return (
         <div className="tasks-container">
-            <form onSubmit={(e) => {
-                console.log('editandoId en submit:', editandoId);
-                editandoId ? handleEditarTarea(e) : handleAddTarea(e)}}>
+            <form onSubmit={(e) => {editandoId ? handleEditarTarea(e) : handleAddTarea(e)}}>
                 <input value={titulo} onChange={(e) => setTitulo(e.target.value)} placeholder="Título" />
                 <input value={descripcion} onChange={(e) => setDescripcion(e.target.value)} placeholder="Descripción" />
                 <button type="submit" className="add-btn">Añadir</button>

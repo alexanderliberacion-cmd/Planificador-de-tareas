@@ -13,28 +13,22 @@ export const Login = () => {
     const [error, setError] = useState('')
     const navigate = useNavigate();
 
+    //Maneja el inicio de sesion.
     async function handleLogin(e){
-        //manejara el inicio de sesion con la api de supabase
-        // Llamar a la api de supabase
-        //Se revisara con un metodo importado de validator.js si es valido
-        // Si es exitoso ira a dashboard (useNavigate)
-        // Si no se mostrara un error
         e.preventDefault();
 
+        //Si no esta validado saltara un mensaje de error y saldra de la aplicacion.
         if (!validateEmail(email) || !validatePassword(password)){
             setError('Email o contraseña no valida');
             return;
         }
-
+        //Si esta validado entonces llamara a login de dao y te llevara al Dashboard. Si no dara mensaje de error
         try {
             await login(email, password);
             navigate('/dashboard');
         } catch (error) {
             setError(error.message);
         }
-
-
-
     }
 
     return (
