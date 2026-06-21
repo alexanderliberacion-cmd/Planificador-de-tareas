@@ -11,7 +11,7 @@
     margin-bottom: 1rem;
 }
 
-.Logout {
+.logout {
     align-self: flex-start;
     padding: 0.5rem 1rem;
     background-color: #6366f1;
@@ -21,4 +21,13 @@
     cursor: pointer;
     font-weight: 500;
     transition: background-color 0.2s;
+}
+
+@media only screen and (max-width: 768px) {
+    .rachas-section {
+        width: 100%;
+    }
+    .tasks-section {
+        width: 100%;
+    }
 }

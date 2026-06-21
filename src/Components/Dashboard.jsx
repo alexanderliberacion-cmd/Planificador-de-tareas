@@ -127,7 +127,7 @@ export const Dashboard = () => {
                 <div className="rachas-section">
                     <Rachas dias={dias} multiplicador={multiplicador} puntosTotales={puntosTotales} record={record} />
                 </div>
-                <button onClick={Auth.logout} className="Logout">Logout</button>
+                <button onClick={Auth.logout} className="logout">Logout</button>
             </div>
         </div>
     )
